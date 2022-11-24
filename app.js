@@ -95,8 +95,8 @@ start.addEventListener('click', ev => {
 
 const restart = () =>{
 
-    // numbers = backup;
-    // backup = [];
+    numbers = backup;
+    backup = [];
     render_numbers()
     main.innerHTML = ''
     main.addEventListener('click',check)
