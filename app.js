@@ -1,19 +1,7 @@
 const main = document.querySelector('main')
 const article = document.querySelector('article')
+const stat  = document.querySelector('.status')
 
-// let numbers =[
-//     1,2,3,4,5
-//                 // 1,2,3,4,5,6,7,8,9,
-//                 // 10,11,12,13,14,15,16,17,18,19,
-//                 // 20,21,22,23,24,25,26,27,28,29,
-//                 // 30,31,32,33,34,35,36,37,38,39,
-//                 // 40,41,42,43,44,45,46,47,48,49,
-//                 // 50,51,52,53,54,55,56,57,58,59,
-//                 // 60,61,62,63,64,65,66,67,68,69,
-//                 // 70,71,72,73,74,75,76,77,78,79,
-//                 // 80,81,82,83,84,85,86,87,88,89,
-//                 // 90,91,92,93,94,95,96,97,98,99,100
-//             ]
 let numbers = [...Array(101).keys()]
 
 console.log(numbers)
@@ -65,11 +53,9 @@ const generate_random_number = n =>{
     return Math.floor(Math.random() * n)
 }
 
-// console.log([...Array(101).keys()])
-
 let random_number;
 
-const render_numbers = () =>{
+const display = () =>{
 
     random_number = generate_random_number(100)
     const section = document.createElement('section')
@@ -87,7 +73,7 @@ const render_numbers = () =>{
     main.appendChild(section)
 
 }
-render_numbers()
+display()
 
 const start = document.querySelector('.start')
 start.addEventListener('click', ev => {
@@ -111,8 +97,9 @@ const restart = () =>{
     numbers = backup;
     backup = [];
     main.innerHTML = ''
+    stat.innerHTML = ''
     main.addEventListener('click',check)
-    render_numbers()
+    display()
     lives.innerHTML = 7;
 
 }
@@ -124,7 +111,7 @@ const check = ev =>{
 
         let value = btn.dataset.value;
         if(value == random_number) correct(btn)
-        else wrong(btn)
+        else wrong(btn,value)
 
     }
 
@@ -137,13 +124,22 @@ const correct = btn => {
    
 }
 
-const wrong = btn => {
+const wrong = (btn,val) => {
 
     if(btn.className.includes('wrong'))return;
     btn.classList.toggle('wrong')
     selected_audio()
     chances()
+    stats(val)
 
+}
+
+const stats = val =>{
+    if(val > random_number){
+        stat.innerHTML = 'Too Hign'
+    }else if(val < random_number){
+        stat.innerHTML = 'Too Low'
+    }
 }
 
 main.addEventListener('click',check)
@@ -162,13 +158,13 @@ const chances = n =>{
     }
 
 }
-
 const lucky_number = n =>{
     
    setTimeout(()=>{
         const section = document.querySelector('section')
-        let element = Array.from(section.children).find(val => val.dataset.value == n)
-        element.classList.toggle('correct')
-   },1000)
+        let elements = Array.from(section.children);
+        elements.forEach(ele => ele.dataset.value != n ? ele.classList.add('wrong'): ele.classList.add('correct'))
+        elements.classList.toggle('correct')
+   },3000)
 
 }
