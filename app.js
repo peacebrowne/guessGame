@@ -98,9 +98,9 @@ const restart = () =>{
     backup = [];
     main.innerHTML = ''
     stat.innerHTML = ''
-    main.addEventListener('click',check)
-    display()
     lives.innerHTML = 7;
+    display()
+    main.addEventListener('click',check)
 
 }
 
