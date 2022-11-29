@@ -4,7 +4,6 @@ const stat  = document.querySelector('.status')
 
 let numbers = [...Array(101).keys()]
 
-console.log(numbers)
 const audio_box = [
     "./audio/apostle.m4a",
     "./audio/basic1plus1.m4a",
@@ -80,7 +79,7 @@ start.addEventListener('click', ev => {
     
     let action = ev.target;
     if(action.dataset.start === 'false'){
-        
+        action.textContent = 'restart'
         action.dataset.start = true
         hideEle(article)
         showEle(main)
