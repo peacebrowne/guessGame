@@ -191,9 +191,8 @@ h1 {
   }
 
   section {
-    width: 90%;
-    grid-template-columns: repeat(auto-fit, minmax(4rem, 4rem));
-    grid-auto-rows: minmax(4rem, 4rem);
+    grid-template-columns: repeat(auto-fit, minmax(3.5rem, 3.5rem));
+    grid-auto-rows: minmax(3.5rem, 3.5rem);
   }
 
   summary {
