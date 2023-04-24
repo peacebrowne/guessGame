@@ -15,8 +15,8 @@ const summary = findEle("summary");
 const statistics = findEle(".status");
 const lives = findEle(".lives");
 
-const numbers = [...Array(101).keys()];
-const backup = [];
+let numbers = [...Array(101).keys()];
+let backup = [];
 const GENERAL_RANDOM_NUMBER = generateRandomNumber(100);
 
 const audioBox = [
